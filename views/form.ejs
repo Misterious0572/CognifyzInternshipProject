@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <!-- Using Google Fonts for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="form-wrapper">
+        <div class="registration-card">
+            <h1 class="card-title">Create Your Account</h1>
+
+            <!-- Global Error Display Area (for server-side errors on initial load) -->
+            <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+                <div class="global-error-message server-error" id="serverErrorDisplay">
+                    <% errors.forEach(function(err) { %>
+                        <p><%= err %></p>
+                    <% }); %>
+                </div>
+            <% } %>
+            <!-- Global Error Display Area (for client-side/API errors) -->
+            <div class="global-error-message" id="globalErrors"></div>
+
+            <!-- IMPORTANT: Form action now points to the API endpoint -->
+            <form action="/api/register" method="POST" id="registrationForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="<%= formData.username || '' %>" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="<%= formData.email || '' %>" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="phone-input-wrapper">
+                        <select id="countryCode" name="countryCode">
+                            <option value="+1" <%= formData.countryCode === '+1' ? 'selected' : '' %>>+1 (USA/Canada)</option>
+                            <option value="+44" <%= formData.countryCode === '+44' ? 'selected' : '' %>>+44 (UK)</option>
+                            <option value="+91" <%= formData.countryCode === '+91' ? 'selected' : '' %>>+91 (India)</option>
+                            <option value="+61" <%= formData.countryCode === '+61' ? 'selected' : '' %>>+61 (Australia)</option>
+                            <option value="+49" <%= formData.countryCode === '+49' ? 'selected' : '' %>>+49 (Germany)</option>
+                            <!-- Add more as needed -->
+                        </select>
+                        <input type="tel" id="phone" name="phone" value="<%= formData.phone || '' %>" placeholder="e.g., 1234567890" required maxlength="10">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male" <%= formData.gender === 'male' ? 'selected' : '' %>>Male</option>
+                        <option value="female" <%= formData.gender === 'female' ? 'selected' : '' %>>Female</option>
+                        <option value="other" <%= formData.gender === 'other' ? 'selected' : '' %>>Other</option>
+                        <option value="prefer_not_to_say" <%= formData.gender === 'prefer_not_to_say' ? 'selected' : '' %>>Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" name="password" required autocomplete="new-password">
+                        <span class="toggle-password" data-target="password">👁</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password">
+                        <span class="toggle-password" data-target="confirmPassword">👁</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Register</button>
+            </form>
+
+            <p class="login-link">Already have an account? <a href="/login">Log In</a></p>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

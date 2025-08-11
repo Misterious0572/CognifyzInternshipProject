@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Successful</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="form-wrapper">
+        <div class="success-card">
+            <h2 id="successTitle"><%= title %></h2>
+            <p id="successMessage"><%= message %></p>
+            <!-- Links to other pages -->
+            <a href="/" class="back-link">Go to Registration</a>
+            <a href="/login" class="back-link" style="margin-left: 10px;">Go to Login</a>
+            <!-- NEW: Link to Dashboard if applicable -->
+            <% if (typeof username !== 'undefined' && (title.includes('Welcome Back') || title.includes('Successful Registration'))) { %>
+                <a href="/dashboard" class="back-link" style="margin-left: 10px;">Go to Dashboard</a>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

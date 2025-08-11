@@ -1,0 +1,484 @@
+/* Basic Reset & Font */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #1a202c; /* Dark background for the body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #cbd5e0; /* Light text color */
+    /* overflow: hidden; was removed, ensuring scrolling is possible */
+
+    /* Page entry animation */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: pageFadeIn 0.6s ease-out forwards;
+}
+
+/* Keyframe for general page fade-in on load */
+@keyframes pageFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page exit animation */
+body.page-exit {
+    opacity: 0;
+    transform: translateY(-20px); /* Slide up slightly on exit */
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+
+/* Background Gradient with enhanced animation */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dark Teal to Deep Blue Gradient */
+    background: linear-gradient(135deg, #004d40 0%, #00796b 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite alternate;
+    z-index: -1;
+}
+
+/* Keyframe for enhanced background gradient animation */
+@keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Form Wrapper for Centering */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Registration Card Styling with entry animation */
+.registration-card {
+    background-color: #2d3748; /* Darker grey for card background */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+
+    /* Entry animation for the card */
+    animation: fadeInScale 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+}
+
+/* Keyframe for card entry animation */
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card-title {
+    font-size: 2.2rem;
+    color: #e2e8f0; /* Lighter title color */
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Input Group Styling with hover/focus effect */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+    padding: 8px; /* Slightly increased padding for the hover effect area */
+    margin: -8px; /* Counteract padding to maintain layout */
+    margin-bottom: 12px; /* Adjust margin-bottom after padding adjustment */
+    border-radius: 10px; /* Slightly more rounded corners for the group */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+/* Input group hover/focus effect */
+.input-group:hover,
+.input-group:focus-within { /* When any element inside is focused */
+    transform: translateY(-5px); /* Lift slightly */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    background-color: rgba(255, 255, 255, 0.08); /* Very subtle background highlight */
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.95rem;
+    color: #a0aec0; /* Lighter label color */
+    margin-bottom: 8px;
+    font-weight: 600;
+    transition: color 0.3s ease; /* Smooth color transition for label */
+}
+
+/* Label color change on input focus */
+.input-group:focus-within label {
+    color: #ffd700; /* Gold color for focused label */
+}
+
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="tel"],
+.input-group input[type="password"],
+.input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #4a5568; /* Darker border */
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #e2e8f0; /* Light text in input */
+    background-color: #2d3748; /* Same as card background */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hide browser's default password reveal icon (not 100% effective everywhere) */
+::-ms-reveal { /* For Edge/IE */
+    display: none;
+}
+input[type="password"]::-webkit-reveal { /* For some WebKit browsers */
+    display: none;
+}
+input[type="password"]::-ms-reveal { /* For Edge/IE again, sometimes needed */
+    display: none;
+}
+/* This is a more aggressive attempt, might affect other inputs */
+input::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
+input::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
+
+
+/* Enhanced Input Focus (already good, just ensuring consistency) */
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #ffd700; /* Gold border on focus */
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3); /* Gold shadow */
+    outline: none;
+    background-color: #1a202c; /* Even darker background on focus */
+}
+
+/* Phone input wrapper for country code and number */
+.phone-input-wrapper {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.phone-input-wrapper select {
+    flex-shrink: 0;
+    width: auto;
+    padding: 12px 10px;
+    border-radius: 8px;
+    background-color: #2d3748; /* Dark background */
+    border: 1px solid #4a5568; /* Darker border */
+    font-size: 1rem;
+    color: #e2e8f0; /* Light text */
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Custom arrow for dark theme */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e2e8f0%22%20d%3D%22M287%2C114.7L158.4%2C243.3c-2.8%2C2.8-6.1%2C4.2-9.5%2C4.2s-6.7-1.4-9.5-4.2L5.4%2C114.7c-5.4-5.4-5.4-14.2%2C0-19.6l14.7-14.7c5.4-5.4%2C14.2-5.4%2C19.6%2C0l118%2C118l118-118c5.4-5.4%2C14.2-5.4%2C19.6%2C0l14.7%2C14.7C292.4%2C100.5%2C292.4%2C109.3%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+.phone-input-wrapper input[type="tel"] {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+
+/* Password Input Wrapper */
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper input {
+    padding-right: 45px; /* Make space for the toggle icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #a0aec0; /* Lighter grey for eye icon */
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #e2e8f0; /* Lighter on hover */
+}
+
+/* Validation Styles */
+input.is-invalid,
+select.is-invalid {
+    border-color: #e74c3c; /* Red for invalid */
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+}
+
+input.is-valid,
+select.is-valid {
+    border-color: #27ae60; /* Green for valid */
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+/* Global Error Message Styling with entry animation */
+.global-error-message {
+    background-color: #3b0000; /* Darker red background for errors */
+    color: #ffcccc; /* Lighter red text */
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+    display: none;
+    border: 1px solid #c0392b; /* Darker red border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+    /* Error message entry animation */
+    animation: slideInFadeIn 0.4s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Keyframe for error message entry animation */
+@keyframes slideInFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.global-error-message.server-error {
+    display: block;
+}
+
+.global-error-message p {
+    margin: 0;
+    padding: 2px 0;
+}
+
+/* Submit Button */
+.submit-button {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #ffd700; /* Gold button */
+    color: #1a202c; /* Dark text on gold button */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #e0b800; /* Darker gold on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+.submit-button:disabled {
+    background-color: #4a5568; /* Darker grey when disabled */
+    color: #a0aec0; /* Lighter text */
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Login Link */
+.login-link {
+    font-size: 0.9rem;
+    color: #a0aec0; /* Lighter grey for text */
+    margin-top: 25px;
+}
+
+.login-link a {
+    color: #ffd700; /* Gold link */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.login-link a:hover {
+    color: #e0b800; /* Darker gold on hover */
+    text-decoration: underline;
+}
+
+/* Success Card Styling (for result.ejs) */
+.success-card {
+    background-color: #2d3748; /* Darker grey for card background */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    box-sizing: border-box;
+    color: #e2e8f0; /* Light text */
+}
+
+.success-card h2 {
+    font-size: 2rem;
+    color: #27ae60; /* Green for success message */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.success-card p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.success-card strong {
+    color: #ffd700; /* Gold for strong text */
+}
+
+.success-card .back-link {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #ffd700; /* Gold button */
+    color: #1a202c; /* Dark text on gold button */
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.success-card .back-link:hover {
+    background-color: #e0b800; /* Darker gold on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive Adjustments */
+/* Medium screens (e.g., tablets in portrait) */
+@media (max-width: 768px) {
+    .registration-card, .success-card {
+        padding: 35px;
+        max-width: 400px;
+    }
+
+    .card-title {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+}
+
+/* Small screens (e.g., mobile phones) */
+@media (max-width: 480px) {
+    .form-wrapper {
+        padding: 10px;
+    }
+
+    .registration-card, .success-card {
+        padding: 25px 20px;
+        border-radius: 8px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group label {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .submit-button {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .toggle-password {
+        font-size: 1rem;
+        right: 12px;
+    }
+
+    .global-error-message {
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        font-size: 0.85rem;
+    }
+
+    .submit-button {
+        padding: 12px 15px;
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+
+    .login-link {
+        font-size: 0.8rem;
+        margin-top: 20px;
+    }
+
+    .success-card h2 {
+        font-size: 1.8rem;
+    }
+
+    .success-card p {
+        font-size: 1rem;
+    }
+
+    .success-card .back-link {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small screens (e.g., old phones, narrow viewports) */
+@media (max-width: 320px) {
+    .registration-card, .success-card {
+        padding: 20px 15px;
+    }
+    .card-title {
+        font-size: 1.4rem;
+    }
+}

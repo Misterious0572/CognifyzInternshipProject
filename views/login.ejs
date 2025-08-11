@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Your Account</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="form-wrapper">
+        <div class="registration-card">
+            <h1 class="card-title">Welcome Back!</h1>
+
+            <!-- Global Error Display Area -->
+            <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+                <div class="global-error-message server-error" id="serverErrorDisplay">
+                    <% errors.forEach(function(err) { %>
+                        <p><%= err %></p>
+                    <% }); %>
+                </div>
+            <% } %>
+            <div class="global-error-message" id="globalErrors"></div>
+
+            <form action="/api/login" method="POST" id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="<%= formData.username || '' %>" required autocomplete="username">
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                        <span class="toggle-password" data-target="password">👁</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button" id="loginButton">Login</button>
+            </form>
+
+            <p class="login-link">Don't have an account? <a href="/">Register here</a></p>
+        </div>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>

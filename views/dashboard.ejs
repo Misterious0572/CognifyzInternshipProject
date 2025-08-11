@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="form-wrapper">
+        <div class="registration-card">
+            <h1 class="card-title">Welcome to your Dashboard, <%= username %>!</h1>
+            <p class="form-description">This is a protected page. Only logged-in users can see this.</p>
+            
+            <div class="dashboard-info">
+                <p>You are successfully logged in.</p>
+                <p>Feel free to explore!</p>
+            </div>
+
+            <!-- NEW: Weather Section -->
+            <div class="weather-section">
+                <h3>Local Weather</h3>
+                <button type="button" class="submit-button" id="fetchWeatherButton">Fetch Weather</button>
+                <div id="weatherDisplay" class="weather-display">
+                    <!-- Weather data will be displayed here -->
+                    <p id="weatherLoading" style="display: none;">Loading weather...</p>
+                    <p id="weatherCity"></p>
+                    <p id="weatherTemp"></p>
+                    <p id="weatherCondition"></p>
+                    <p id="weatherHumidity"></p>
+                    <p id="weatherWind"></p>
+                </div>
+            </div>
+
+            <button type="button" class="submit-button" id="logoutButton" style="margin-top: 30px;">Logout</button>
+
+            <p class="login-link" style="margin-top: 20px;"><a href="/">Go to Registration Page</a></p>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script> <!-- NEW: Link to dashboard.js -->
+</body>
+</html>
